@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Resume Builder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .input-section, .resume-section {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        textarea {
+            height: 80px;
+        }
+
+        #resume {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+
+        #resume h3 {
+            color: #444;
+            font-size: 1.5rem;
+        }
+
+        #resume p {
+            color: #555;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Real-Time Resume Builder</h1>
+        <div class="input-section">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email">
+            
+            <label for="about">About You:</label>
+            <textarea id="about" placeholder="Write a brief about yourself"></textarea>
+            
+            <label for="skills">Skills (comma-separated):</label>
+            <input type="text" id="skills" placeholder="e.g., HTML, CSS, JavaScript">
+        </div>
+        <div class="resume-section">
+            <h2>Preview</h2>
+            <div id="resume">
+                <h3 id="preview-name">Your Name</h3>
+                <p id="preview-email">Your Email</p>
+                <p id="preview-about">About You</p>
+                <p id="preview-skills">Skills: </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // DOM Elements
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const aboutInput = document.getElementById('about');
+        const skillsInput = document.getElementById('skills');
+
+        const previewName = document.getElementById('preview-name');
+        const previewEmail = document.getElementById('preview-email');
+        const previewAbout = document.getElementById('preview-about');
+        const previewSkills = document.getElementById('preview-skills');
+
+        // Update Preview in Real-Time
+        nameInput.addEventListener('input', () => {
+            previewName.textContent = nameInput.value || "Your Name";
+        });
+
+        emailInput.addEventListener('input', () => {
+            previewEmail.textContent = emailInput.value || "Your Email";
+        });
+
+        aboutInput.addEventListener('input', () => {
+            previewAbout.textContent = aboutInput.value || "About You";
+        });
+
+        skillsInput.addEventListener('input', () => {
+            const skills = skillsInput.value.split(',').map(skill => skill.trim()).filter(skill => skill);
+            previewSkills.textContent = skills.length ? `Skills: ${skills.join(', ')}` : "Skills:";
+        });
+    </script>
+</body>
+</html>
